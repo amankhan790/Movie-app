@@ -3,7 +3,7 @@ import MovieCart from "./MovieCart";
 import axios from "axios";
 import Pagination from "./Pagination";
 
-const Movies = ({ handeAddWatchlist }) => {
+const Movies = ({ handeAddWatchlist, handleRemoveWatchlist, watchlist}) => {
   const [movie, setMovie] = useState([]);
   const [pageNo, setPageNo] = useState(1);
 
@@ -39,9 +39,11 @@ const Movies = ({ handeAddWatchlist }) => {
             <MovieCart
               movieItem={movieItem}
               key={movieItem.id}
+              watchlist={watchlist}
               poster_path={movieItem.poster_path}
               name={movieItem.original_title}
               handeAddWatchlist={handeAddWatchlist}
+              handleRemoveWatchlist={handleRemoveWatchlist}
             />
           );
         })}

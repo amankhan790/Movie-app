@@ -6,15 +6,22 @@ import { Route, Routes } from "react-router-dom";
 import Banner from "./components/Banner";
 
 const App = () => {
-
-  const [watchlist, setWatchList] = useState([])
+  const [watchlist, setWatchList] = useState([]);
 
   const handeAddWatchlist = (movieItem) => {
-    const newWatchlist = [...watchlist, movieItem]
-    setWatchList(newWatchlist)
+    const newWatchlist = [...watchlist, movieItem];
+    setWatchList(newWatchlist);
     console.log(newWatchlist);
-    
-  }
+  };
+
+  const handleRemoveWatchlist = (movieItem) => {
+    const filterWatchlsit = watchlist.filter((movie) => {
+      return movie.id != movieItem.id;
+    });
+
+    setWatchList(filterWatchlsit);
+    console.log(filterWatchlsit);
+  };
 
   return (
     <>
@@ -24,7 +31,12 @@ const App = () => {
           path="/"
           element={
             <>
-              <Banner /> <Movies handeAddWatchlist={handeAddWatchlist} />
+              <Banner />{" "}
+              <Movies
+                handeAddWatchlist={handeAddWatchlist}
+                handleRemoveWatchlist={handleRemoveWatchlist}
+                watchlist={watchlist}
+              />
             </>
           }
         />
