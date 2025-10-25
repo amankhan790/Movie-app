@@ -3,21 +3,21 @@ import MovieCart from "./MovieCart";
 import axios from "axios";
 import Pagination from "./Pagination";
 
-const Movies = () => {
+const Movies = ({ handeAddWatchlist }) => {
   const [movie, setMovie] = useState([]);
-  const [pageNo, setPageNo] = useState(1)
+  const [pageNo, setPageNo] = useState(1);
 
   const handlePrev = () => {
-    if(pageNo === 1){
-      setPageNo(pageNo)
-    }else{
-      setPageNo(pageNo - 1)
+    if (pageNo === 1) {
+      setPageNo(pageNo);
+    } else {
+      setPageNo(pageNo - 1);
     }
-  }
+  };
 
   const handleNext = () => {
-    setPageNo(pageNo + 1)
-  }
+    setPageNo(pageNo + 1);
+  };
 
   useEffect(() => {
     axios
@@ -36,13 +36,21 @@ const Movies = () => {
       <div className="flex flex-wrap flex-row justify-around gap-5 p-5">
         {movie.map((movieItem, id) => {
           return (
-            <MovieCart key={movieItem.id} 
-            poster_path={movieItem.poster_path}
-            name={movieItem.original_title} />
+            <MovieCart
+              movieItem={movieItem}
+              key={movieItem.id}
+              poster_path={movieItem.poster_path}
+              name={movieItem.original_title}
+              handeAddWatchlist={handeAddWatchlist}
+            />
           );
         })}
       </div>
-      <Pagination pageNo={pageNo} handleNext={handleNext} handlePrev={handlePrev} />
+      <Pagination
+        pageNo={pageNo}
+        handleNext={handleNext}
+        handlePrev={handlePrev}
+      />
     </div>
   );
 };
