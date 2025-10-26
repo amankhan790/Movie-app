@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Movies from "./components/Movies";
 import Watchlist from "./components/Watchlist";
@@ -10,6 +10,7 @@ const App = () => {
 
   const handeAddWatchlist = (movieItem) => {
     const newWatchlist = [...watchlist, movieItem];
+    localStorage.setItem("movieApp", JSON.stringify(newWatchlist));
     setWatchList(newWatchlist);
     console.log(newWatchlist);
   };
@@ -22,6 +23,14 @@ const App = () => {
     setWatchList(filterWatchlsit);
     console.log(filterWatchlsit);
   };
+
+  useEffect(() => {
+    const movieFromLocalStorage = localStorage.getItem("movieApp");
+    if (!movieFromLocalStorage) {
+      return;
+    }
+    setWatchList(JSON.parse(movieFromLocalStorage));
+  },[]);
 
   return (
     <>
@@ -40,7 +49,10 @@ const App = () => {
             </>
           }
         />
-        <Route path="/watchlist" element={<Watchlist />} />
+        <Route
+          path="/watchlist"
+          element={<Watchlist Watchlist={watchlist} />}
+        />
       </Routes>
     </>
   );

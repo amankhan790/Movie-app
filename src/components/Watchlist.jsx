@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Watchlist = () => {
+const Watchlist = ({ Watchlist }) => {
+  const [search, setSearch] = useState("")
+
+  const handleSaerch = (e) => {
+    setSearch(e.target.value)
+  }
+
   return (
     <>
-    <div className="flex justify-center flex-wrap m-4">
-      <div className="flex justify-center items-center bg-blue-400 w-[9rem] h-[3rem] rounded text-white font-bold mx-4">Action</div>
-      <div className="flex justify-center items-center bg-gray-400/60 w-[9rem] h-[3rem] rounded text-white font-bold">Action</div>
-    </div>
+      <div className="flex justify-center flex-wrap m-4">
+        <div className="flex justify-center items-center bg-blue-400 w-[9rem] h-[3rem] rounded text-white font-bold mx-4">
+          Action
+        </div>
+        <div className="flex justify-center items-center bg-gray-400/60 w-[9rem] h-[3rem] rounded text-white font-bold">
+          Action
+        </div>
+      </div>
       <div className="flex justify-center my-4">
         <input
+        onChange={handleSaerch}
+        value={search}
           type="text"
           placeholder="Search for movies"
           className="h-[3rem] w-[18rem] border-black bg-gray-200 outline-none p-2"
@@ -26,34 +38,26 @@ const Watchlist = () => {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b-2">
-              <td className="flex items-center px-6 py-5">
-                <img
-                  className="w-[10rem] h-[6rem]"
-                  src={`https://imgs.search.brave.com/e2-yIs-j0MGjFTkbBk4SxjkcCj32e_rrqZ0sIr-Uk7c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1wc2Qv/bW92aWUtcG9zdGVy/LW1vdmllLW1vdmll/LW1vdmllLW1vdmll/LW1vdmllLW1vdmll/LWlzLWZyb20tbW92/aWVfMTE1ODc3NS02/MjIxLmpwZz9zZW10/PWFpc19oeWJyaWQm/dz03NDAmcT04MA`}
-                  alt=""
-                />
-                <div className="mx-10">The Movie</div>
-              </td>
-              <td>9.5</td>
-              <td>9</td>
-              <td>Action</td>
-              <td className="text-red-800">Delete</td>
-            </tr>
-            <tr className="border-b-2">
-              <td className="flex items-center px-6 py-5">
-                <img
-                  className="w-[10rem] h-[6rem]"
-                  src={`https://imgs.search.brave.com/e2-yIs-j0MGjFTkbBk4SxjkcCj32e_rrqZ0sIr-Uk7c/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS1wc2Qv/bW92aWUtcG9zdGVy/LW1vdmllLW1vdmll/LW1vdmllLW1vdmll/LW1vdmllLW1vdmll/LWlzLWZyb20tbW92/aWVfMTE1ODc3NS02/MjIxLmpwZz9zZW10/PWFpc19oeWJyaWQm/dz03NDAmcT04MA`}
-                  alt=""
-                />
-                <div className="mx-10">The Movie</div>
-              </td>
-              <td>9.5</td>
-              <td>9</td>
-              <td>Action</td>
-              <td className="text-red-800">Delete</td>
-            </tr>
+            {Watchlist.filter((movieItem) => {
+              return movieItem.title.toLowerCase().includes(search.toLowerCase())
+            }).map((movieItem) => {
+              return (
+                <tr key={movieItem.id} className="border-b-2">
+                  <td className="flex items-center px-6 py-5">
+                    <img
+                      className="w-[10rem] h-[6rem]"
+                      src={`https://image.tmdb.org/t/p/original/${movieItem.backdrop_path}`}
+                      alt=""
+                    />
+                    <div className="mx-10">{movieItem.title}</div>
+                  </td>
+                  <td>{movieItem.vote_average}</td>
+                  <td>{movieItem.popularity}</td>
+                  <td>{}</td>
+                  <td className="text-red-800">Delete</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
