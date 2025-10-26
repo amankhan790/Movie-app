@@ -51,7 +51,7 @@ const App = () => {
         />
         <Route
           path="/watchlist"
-          element={<Watchlist Watchlist={watchlist} />}
+          element={<Watchlist watchlist={watchlist} setWatchList={setWatchList} />}
         />
       </Routes>
     </>
