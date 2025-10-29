@@ -4,6 +4,10 @@
 * {
   background-color: #030712;
 }
-.movieCart {
+.movieCart{
   background-color: rgba(128, 128, 128, 0.691);
+}
+.Pagination{
+  background-color: rgba(128, 128, 128, 0.785);
+  border-radius: 10px;
 }
