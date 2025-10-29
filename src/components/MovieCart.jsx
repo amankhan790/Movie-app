@@ -21,7 +21,7 @@ const MovieCart = ({
 
   return (
     <div
-      className="h-[50vh] w-[200px] relative bg-center bg-cover rounded-xl hover:cursor-pointer hover:scale-110 duration-300"
+      className="h-[50vh] lg:w-[200px] w-[250px] relative bg-center bg-cover rounded-xl hover:cursor-pointer hover:scale-110 duration-300"
       style={{
         backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
       }}
@@ -46,7 +46,7 @@ const MovieCart = ({
         </div>
       )}
 
-      <div className="text-white text-center absolute bottom-0 text-xl p-[5px] w-full bg-gray-900/60 rounded-xl">
+      <div className="text-white movieCart text-center absolute bottom-0 text-[15px] p-[5px] w-full bg-amber-50 rounded-xl font-bold">
         {name}
       </div>
     </div>

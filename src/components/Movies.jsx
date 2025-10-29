@@ -32,7 +32,7 @@ const Movies = ({ handeAddWatchlist, handleRemoveWatchlist, watchlist}) => {
 
   return (
     <div className="p-4">
-      <div className="text-center font-bold m-5 text-2xl">Trending Movies</div>
+      <div className="text-center font-bold m-5 text-white text-2xl">Trending Movies</div>
       <div className="flex flex-wrap flex-row justify-around gap-5 p-5">
         {movie.map((movieItem, id) => {
           return (
