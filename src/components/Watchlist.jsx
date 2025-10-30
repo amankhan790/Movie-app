@@ -39,15 +39,15 @@ const Watchlist = ({ watchlist, setWatchList, handleRemoveWatchlist }) => {
 
   return (
     <>
-      <div className="flex justify-center flex-wrap m-4">
+      <div className="flex justify-center flex-wrap m-4  sm:gap-4 gap-2">
         {genreList.map((genre) => {
           return (
             <div
               onClick={() => handleFilter(genre)}
               className={
                 currGenre === genre
-                  ? "flex justify-center items-center bg-blue-400 w-[9rem] h-[3rem] rounded text-white font-bold m-4"
-                  : "flex justify-center items-center bg-gray-900/60 w-[9rem] h-[3rem] rounded text-white font-bold m-4"
+                  ? "genre flex justify-center items-center bg-gray-400 w-[9rem] h-[3rem] rounded text-white font-bold m-4"
+                  : "genreBlue flex justify-center items-center bg-gray-900/60 w-[9rem] h-[3rem] rounded text-white font-bold m-4"
               }
             >
               {genre}
@@ -55,19 +55,19 @@ const Watchlist = ({ watchlist, setWatchList, handleRemoveWatchlist }) => {
           );
         })}
       </div>
-      <div className="flex justify-center my-4">
+      <div className="flex justify-center my-4 rounded">
         <input
           onChange={handleSaerch}
           value={search}
           type="text"
           placeholder="Search for movies"
-          className="h-[3rem] w-[18rem] border-black bg-gray-200 outline-none p-2"
+          className="h-[3rem] w-[18rem] text-white font-bold border-black bg-gray-200 outline-none p-2 rounded"
         />
       </div>
 
-      <div className="overfolw-hidden rounded-lg border border-gray-200 m-8">
-        <table className="w-full text-gray-500 text-center">
-          <thead className="border-b-2">
+      <div className="overflow-x-auto rounded-lg border border-gray-200 m-2 sm:m-8">
+        <table className="w-full min-w-[600px] text-gray-500 text-center text-sm sm:text-base">
+          <thead className="border-b-2 bg-amber-300">
             <tr>
               <th>Name</th>
               <th className="flex gap-2 items-center justify-center">
@@ -100,9 +100,9 @@ const Watchlist = ({ watchlist, setWatchList, handleRemoveWatchlist }) => {
               .map((movieItem) => {
                 return (
                   <tr key={movieItem.id} className="border-b-2">
-                    <td className="flex items-center px-6 py-5">
+                    <td className="flex flex-col sm:flex-row items-center gap-3 sm:gap-10 px-4 py-4 text-center sm:text-left">
                       <img
-                        className="w-[10rem] h-[6rem]"
+                        className="w-[8rem] sm:w-[10rem] h-[5rem] sm:h-[6rem] object-cover rounded"
                         src={`https://image.tmdb.org/t/p/original/${movieItem.backdrop_path}`}
                         alt=""
                       />

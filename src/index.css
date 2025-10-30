@@ -3,11 +3,15 @@
 
 * {
   background-color: #030712;
+  /* background-color: #a2be9c; */
 }
-.movieCart{
+.movieCart,.genreBlue,input{
   background-color: rgba(128, 128, 128, 0.691);
 }
 .Pagination{
   background-color: rgba(128, 128, 128, 0.785);
   border-radius: 10px;
+}
+.genre {
+  background-color: blue;
 }
